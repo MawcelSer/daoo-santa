@@ -5,6 +5,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const routes = require('./routes')
 const path = require('path')
+const http = require('http')
 require('dotenv').config();
 
 app.use(cors())
@@ -24,4 +25,6 @@ app.get('/', (req, res) => {
     res.send('What are you doing there fucker')
 })
 
-app.listen(process.env.PORT, () => console.log(`App listening at http://localhost:${process.env.PORT}`))
+var httpServer = http.createServer(app);
+
+httpServer.listen(process.env.PORT);

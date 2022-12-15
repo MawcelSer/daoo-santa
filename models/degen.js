@@ -6,14 +6,8 @@ const DegenSchema = new Schema({
         required: true,
         unique: true
     },
-    rugWallet: {
-        type: String,
-        required: true,
-        unique: true
-    },
     starWallet: {
         type: String,
-        required: true,
         unique: true
     },
     partner: {

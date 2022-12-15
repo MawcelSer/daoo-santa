@@ -5,8 +5,8 @@ export default [
         component: require('@/components/PageHome').default,
     },
     {
-        name: 'NotFound',
+        name: 'Home',
         path: '/:pathMatch(.*)*',
-        component: require('@/components/PageNotFound').default,
+        component: require('@/components/PageHome').default,
     }
 ]

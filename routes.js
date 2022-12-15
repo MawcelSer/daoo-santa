@@ -13,11 +13,11 @@ router.get('/degens', async (req, res) => {
     }
 })
 
-router.get('/degen/:wallet', async (req, res) => {
-    const { wallet } = req.params
+router.get('/degen/:name', async (req, res) => {
+    const { name } = req.params
 
     try {
-        const degen = await Degen.findOne({starWallet: wallet})
+        const degen = await Degen.findOne({name: name})
         if (!degen) throw Error('Something went wrong ')
         res.status(200).json(degen)
     } catch (error) {
@@ -36,10 +36,10 @@ router.post('/degen', async (req, res) => {
     }
 })
 
-router.post('/degen/:wallet', async (req, res) => {
+router.post('/degen/:name', async (req, res) => {
     try {
         const updated = await Degen.findOneAndUpdate({
-            starWallet: req.params
+            name: req.params.name
         }, req.body)
         if (!updated) throw Error('Something went wrong ')
         res.status(200).json(updated)
