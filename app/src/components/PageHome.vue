@@ -28,18 +28,18 @@ watch(isDegen, (newValue, oldValue) => {
 const fragment = new URLSearchParams(window.location.hash.slice(1));
 const accessToken = fragment.get('access_token');
 const login = () => {
-		fetch('https://discord.com/api/users/@me/guilds/892103590242566145/member', {
+		axios.get('https://discord.com/api/users/@me/guilds/892103590242566145/member', {
 			headers: {
 				authorization: `Bearer ${accessToken}`,
 			},
 		})
-			.then(result => result.json())
 			.then(response => {
-				const { roles } = response;
+                console.log(response)
+				const { roles } = response.data;
 				roles.map(role => {
                     if(['906532040114049055', '956047907658809394', '936091196110012477'].includes(role) && !isDegen.value) {
                         isDegen.value = true
-                        username.value = response.user.username + response.user.discriminator
+                        username.value = response.data.user.username + response.data.user.discriminator
                     }
                 })
 
