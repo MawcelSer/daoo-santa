@@ -1,12 +1,6 @@
 <script setup>
-// import { useRoute } from 'vue-router'
-// import TheSidebar from './components/TheSidebar'
 import { PhantomWalletAdapter, SolflareWalletAdapter, BackpackWalletAdapter } from '@solana/wallet-adapter-wallets'
 import { initWallet } from 'solana-wallets-vue'
-import { initWorkspace } from '@/composables'
-// import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'  
-
-// const route = useRoute()
 
 const wallets = [
     new PhantomWalletAdapter(),
@@ -15,7 +9,6 @@ const wallets = [
 ]
 
 initWallet({ wallets, autoConnect: true })
-initWorkspace()
 
 </script>
 
