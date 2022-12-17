@@ -13,8 +13,7 @@ const {publicKey} = useWallet()
 let degen = ref({})
 watch(publicKey, (newValue, oldValue) => { 
     if(newValue) {
-      console.log('AAA', name.value)
-        axios.post(`http://localhost:3000/api/degen/${name.value}`, {
+        axios.post(`http://localhost:3000/api/degen`, {
         name: name.value,
         starWallet: newValue,
       }).then(e => console.log(e))

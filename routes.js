@@ -48,4 +48,13 @@ router.post('/degen/:name', async (req, res) => {
     }
 })
 
+// router.get('/degen/delete/:name', async (req, res) => {
+//     try {
+//         await Degen.deleteOne({name: req.params.name})
+//         res.status(200).json('deleted')
+//     } catch (error) {
+//         res.status(500).json({ message: error.message })
+//     }
+// })
+
 module.exports = router
