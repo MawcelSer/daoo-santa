@@ -11,7 +11,7 @@ const DegenSchema = new Schema({
         unique: true
     },
     partner: {
-        type: this,
+        type: String,
         required: false,
     },
     tx: {

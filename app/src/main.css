@@ -102,5 +102,6 @@ p {
 }
 
 #logo {
-    width: 10%
+    width: 10%;
+    position: absolute;
 }
