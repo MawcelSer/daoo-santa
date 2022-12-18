@@ -12,9 +12,6 @@ let degen = ref({})
 let isDegen = ref(false)
 
 watch(isDegen, (newValue, oldValue) => {
-    console.log(username.value)
-    console.log(isDegen.value)
-    console.log(degen.value.name)
     if(newValue) {
         axios.get(`http://localhost:3000/api/degen/${username.value}`).then(e => {
             degen.value = e.data
@@ -56,6 +53,7 @@ if(accessToken) {
 </script>
 
 <template>
+    <img src="../assets/daoo-logo.png" id="logo" alt="">
     <div class="container " v-if="!isDegen">
         <div class="px-8 py-4 border-b">
             <img id="santape" src="../assets/santape.png" alt="">
@@ -69,6 +67,7 @@ if(accessToken) {
         </a>
     </div>
     <div class="container" v-if="isDegen">
+        <p v-if="!degen.starWallet && username">Please select an empty burner wallet </p>
         <WalletAdapter v-if="!degen.starWallet && username" :name="username"></WalletAdapter>
         <div v-if="degen.starWallet" class="px-8 py-4 border-b ">
             <img id="santape" src="../assets/santape.png" alt="">
