@@ -11,10 +11,15 @@ let username = ref(null)
 let degen = ref({})
 let isDegen = ref(false)
 
+const setDegen = (newDegen) => {
+    console.log('SET', newDegen)
+    degen.value = newDegen
+} 
+
 watch(isDegen, (newValue, oldValue) => {
     if(newValue) {
         axios.get(`http://localhost:3000/api/degen/${username.value}`).then(e => {
-            degen.value = e.data
+            setDegen(e.data)
             console.log(degen)
         }).catch(e => {
             console.log(e)
@@ -68,7 +73,7 @@ if(accessToken) {
     </div>
     <div class="container" v-if="isDegen">
         <p v-if="!degen.starWallet && username">Please select an empty burner wallet </p>
-        <WalletAdapter v-if="!degen.starWallet && username" :name="username"></WalletAdapter>
+        <WalletAdapter :set-degen="setDegen" v-if="!degen.starWallet && username" :name="username"></WalletAdapter>
         <div v-if="degen.starWallet" class="px-8 py-4 border-b ">
             <img id="santape" src="../assets/santape.png" alt="">
             <span class="welcome" id="registered">

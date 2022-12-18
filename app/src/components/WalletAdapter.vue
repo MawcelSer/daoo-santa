@@ -5,8 +5,8 @@ import { WalletMultiButton, useWallet } from 'solana-wallets-vue'
 import axios from 'axios';
 
 let saved = ref(false)
-const props = defineProps(['name'])
-const { name } = toRefs(props)
+const props = defineProps(['name', 'setDegen'])
+const { name, setDegen } = toRefs(props)
 
 const {publicKey} = useWallet()
 
@@ -16,13 +16,11 @@ watch(publicKey, (newValue, oldValue) => {
         axios.post(`http://localhost:3000/api/degen`, {
         name: name.value,
         starWallet: newValue,
-      }).then(e => console.log(e))
+      }).then(response => {
+        setDegen.value(response.data)
+    })
     }
 });
-
-const save = () => {
-   
-}
 </script>
 
 <template>
