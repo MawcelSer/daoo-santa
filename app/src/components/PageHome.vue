@@ -39,7 +39,7 @@ const login = () => {
                 console.log(response)
 				const { roles } = response.data;
 				roles.map(role => {
-                    if(['906532040114049055', '956047907658809394', '936091196110012477'].includes(role) && !isDegen.value) {
+                    if(['906532040114049055', '956047907658809394', '936091196110012477', '911993304432930846'].includes(role) && !isDegen.value) {
                         isDegen.value = true
                         username.value = response.data.user.username + response.data.user.discriminator
                     }
