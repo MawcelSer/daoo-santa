@@ -27,8 +27,8 @@ const setDegen = (newDegen) => {
     setPartner(degen.value.partner)
 } 
 
-const setPartner = (name) => {
-    axios.post(`http://localhost:3000/api/degen/get`, {name: name}).then(e => {
+const setPartner = (wallet) => {
+    axios.get(`http://localhost:3000/api/degen/${wallet}`).then(e => {
         partner.value = e.data
 
         const nbers = partner.value.name.slice(-4)
@@ -101,7 +101,7 @@ if(accessToken) {
     <div class="container" v-if="isDegen">
         <p v-if="!degen.name && username">We couldn't find your account ser</p>
         <!-- <WalletAdapter :set-degen="setDegen" v-if="!degen.starWallet && username" :name="username"></WalletAdapter> -->
-        <div v-if="partnerId && !degen.tx" class="px-8 py-4 border-b ">
+        <div v-if="partnerId" class="px-8 py-4 border-b ">
             <img id="santape" src="../assets/santape.png" alt="">
             <span class="welcome" id="registered">
                 <p id="ok">Fuck ho ho ok! Here is the degen you need to treat for Christmas</p>

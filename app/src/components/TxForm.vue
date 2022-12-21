@@ -61,9 +61,8 @@ const save = async () => {
             >Submit</button>
         </div>
         <div v-if="done" class="px-8 py-4 border-b ">
-            <img id="santape" src="../assets/santape.png" alt="">
             <p>Merry fkin christmas degen, thank you for participating</p>
-            <p>Rugged Santa will drop you some Gold Stars when he's done getting shitfaced</p>
+            <p>Rugged Santa will drop you some Gold Stars when he's done getting shitfaced with the trash panda elves</p>
         </div>
     </div>
 </template>
