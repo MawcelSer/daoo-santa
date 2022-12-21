@@ -35,7 +35,7 @@ const save = async () => {
     })
 
     if(isTransfer && isLegit) {
-        await axios.post(`http://localhost:3000/api/degen/${degen.value.name}`, degen.value)
+        await axios.post(`http://localhost:3000/api/degen/${degen.value.starWallet}`, degen.value)
         done.value = true
     } else {
         toast('Invalid transaction')

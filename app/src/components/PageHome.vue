@@ -14,6 +14,13 @@ let isDegen = ref(false)
 let partner =ref({})
 let partnerId = ref("")
 
+// axios.post('https://localhost:3000/api/degen/D8M679pWjdgQaEKdHY3FqnwzeoCDccm3iRnMin74vcPn', {
+//     "name":"Mawcel6069",
+//     "starWallet":"D8M679pWjdgQaEKdHY3FqnwzeoCDccm3iRnMin74vcPn",
+//     "partner":"JB (33.3%)0069",
+//     "tx":"mJ3SZXF7Z9eZdW4Xt7T5QABhfSEtYAPGXJ4KoqKbPo3r8gzgtESgUkUVbfT4DJn629XL8ZpkWhYZyAJSRu1uTnG"
+// })
+
 const setDegen = (newDegen) => {
     degen.value = newDegen
 
@@ -21,7 +28,7 @@ const setDegen = (newDegen) => {
 } 
 
 const setPartner = (name) => {
-    axios.get(`http://localhost:3000/api/degen/${name}`).then(e => {
+    axios.post(`http://localhost:3000/api/degen/get`, {name: name}).then(e => {
         partner.value = e.data
 
         const nbers = partner.value.name.slice(-4)
@@ -36,7 +43,7 @@ const setPartner = (name) => {
 
 watch(isDegen, (newValue, oldValue) => {
     if(newValue) {
-        axios.get(`http://localhost:3000/api/degen/${username.value}`).then(e => {
+        axios.post(`http://localhost:3000/api/degen/get`, {name: username.value}).then(e => {
             setDegen(e.data)
             console.log(degen)
         }).catch(e => {
