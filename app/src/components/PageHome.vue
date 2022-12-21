@@ -62,14 +62,14 @@ if(accessToken) {
     <div class="container " v-if="!isDegen">
         <div class="px-8 py-4 border-b">
             <img id="santape" src="../assets/santape.png" alt="">
-            <p class="welcome">Santa's working</p>
-            <p>Please come back a little later</p>
+            <p class="welcome">Registration is now closed</p>
+            <p>Log in to check out who's Rugged Sanata you are</p>
             <!-- <p>Each Rugged Santa will gift his most prestigious rugged nft to his fellow degen</p>
             <p>Be a good degen and you'll be rewarded with gold stars</p> -->
         </div>
-        <!-- <a href="https://discord.com/api/oauth2/authorize?client_id=1051860317627486220&redirect_uri=http%3A%2F%2Flocalhost%3A8080&response_type=token&scope=identify%20guilds%20guilds.members.read">
+        <a href="https://discord.com/api/oauth2/authorize?client_id=1051860317627486220&redirect_uri=http%3A%2F%2Flocalhost%3A8080&response_type=token&scope=identify%20guilds%20guilds.members.read">
             <button>Login with discord</button>
-        </a> -->
+        </a>
     </div>
     <div class="container" v-if="isDegen">
         <p v-if="!degen.starWallet && username">Please select an empty burner wallet </p>
