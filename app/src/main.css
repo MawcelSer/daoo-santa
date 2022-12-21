@@ -105,3 +105,16 @@ p {
     width: 10%;
     position: absolute;
 }
+
+#form {
+    margin-top: 20px;
+}
+
+input {
+    width: 90%;
+    font-size: 0.7rem;
+}
+
+#ok {
+    margin-bottom: 15px;
+}

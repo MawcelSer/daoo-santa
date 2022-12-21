@@ -1,20 +1,38 @@
 <script setup>
 /* eslint-disable */
 import { ref, watch } from 'vue'
-import DegenForm from '@/components/DegenForm'
+import TxForm from '@/components/TxForm'
 import WalletAdapter from '@/components/WalletAdapter'
 import axios from 'axios'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+import { useAnchorWallet } from 'solana-wallets-vue';
 
 let username = ref(null)
 let degen = ref({})
 let isDegen = ref(false)
+let partner =ref({})
+let partnerId = ref("")
 
 const setDegen = (newDegen) => {
-    console.log('SET', newDegen)
     degen.value = newDegen
+
+    setPartner(degen.value.partner)
 } 
+
+const setPartner = (name) => {
+    axios.get(`http://localhost:3000/api/degen/${name}`).then(e => {
+        partner.value = e.data
+
+        const nbers = partner.value.name.slice(-4)
+        const name = partner.value.name.slice(0, -4)
+        partnerId.value = `${name}#${nbers}`
+        console.log(partner.value)
+        console.log(partnerId.value)
+    }).catch(e => {
+        console.log(e)
+    })
+}
 
 watch(isDegen, (newValue, oldValue) => {
     if(newValue) {
@@ -55,6 +73,8 @@ const login = () => {
 if(accessToken) {
     login()
 }
+
+
 </script>
 
 <template>
@@ -72,13 +92,18 @@ if(accessToken) {
         </a>
     </div>
     <div class="container" v-if="isDegen">
-        <p v-if="!degen.starWallet && username">Please select an empty burner wallet </p>
-        <WalletAdapter :set-degen="setDegen" v-if="!degen.starWallet && username" :name="username"></WalletAdapter>
-        <div v-if="degen.starWallet" class="px-8 py-4 border-b ">
+        <p v-if="!degen.name && username">We couldn't find your account ser</p>
+        <!-- <WalletAdapter :set-degen="setDegen" v-if="!degen.starWallet && username" :name="username"></WalletAdapter> -->
+        <div v-if="partnerId && !degen.tx" class="px-8 py-4 border-b ">
             <img id="santape" src="../assets/santape.png" alt="">
             <span class="welcome" id="registered">
-            <p>You've been registered {{degen.name.slice(0, -4)}}, see you on the 23rd to find out who's Rugged Santa you are</p>
+                <p id="ok">Fuck ho ho ok! Here is the degen you need to treat for Christmas</p>
+                <p>Discord id: <span class="value">{{partnerId}}</span></p>
+                <p>Rug wallet: <span class="value">{{partner.starWallet}}</span></p>
             </span>
+        </div>
+        <div id="form">
+            <TxForm :degen="degen" :address="partner.starWallet"></TxForm>
         </div>
     </div>
 </template>
