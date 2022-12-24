@@ -24,7 +24,7 @@ const save = async () => {
 
     tx.transaction.message.instructions.map(ins => {
         console.log(tx)
-        if(ins.program === 'spl-token' && ins.parsed?.type === 'transferChecked') {
+        if(ins.program === 'spl-token' && (ins.parsed?.type === 'transferChecked' || ins.parsed?.type === 'transfer')) {
             isTransfer = true
         }
     // console.log(ins.parsed?.info.wallet)
